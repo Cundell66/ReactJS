@@ -7,7 +7,9 @@ import notes from "../notes";
 function App() {
     return (<div>
         <Header />,
-        {notes.map(Note)}
+        {notes.map(note => <Note {...note}/>)}
+        {/* {notes.map(Note)} */}
+        
         <Footer />
     </div>);
 }
