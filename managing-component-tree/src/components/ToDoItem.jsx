@@ -1,18 +1,26 @@
 import React, {useState} from 'react';
 
+
+
 function ToDoItem(todoItem) {
-    const [textDec, setTextDec] = useState("");
+
+    const [isDone, setIsDone] = useState("false");
     
-    // function handleClick(){
-    //     (textDec === "")? setTextDec("line-through"):setTextDec("");
-    // }
+    var styling = "text-decoration:"
+    function handleClick() {
+        console.log("Changed");
+        setIsDone(prevValue=> {
+            return !prevValue
+        });
+    } 
+    
     return (
-        <div>
-            
-            <input type="checkbox" name="checkbox" value=""></input>
-            {console.log(checkbox)}
-            <li >{todoItem}</li>
-        </div>)
+
+        <div onClick={handleClick}>
+            <li style={{ textDecoration: isDone? "line-through" : "none"}}>{todoItem} </li>
+        </div>
+    )
+
 }
 
 export default ToDoItem;
