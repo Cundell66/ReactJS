@@ -12,9 +12,29 @@ function App() {
 
   function addItem() {
     setItems(prevItems => {
-      return [...prevItems, inputText];
+      return [...prevItems, { text: inputText, isDone: false }];
     });
     setInputText("");
+  }
+
+  // function handleClicked(index) {
+  //   setItems(prevItems => {
+  //     return prevItems.map((item, i) => {
+  //       if (i === index) {
+  //         return { ...item, isDone: !item.isDone };
+  //       }
+  //       return item;
+  //     });
+  //   });
+  // }
+
+  function deleteItem(id) {
+    setItems((prevItems) => {
+      return prevItems.filter(
+        (item, index)=> {
+          return index !== id
+        });
+    })
   }
 
   return (
@@ -30,7 +50,15 @@ function App() {
       </div>
       <div>
         <ul>
-          {items.map(ToDoItem)}
+          {items.map((item, index) => (
+            <ToDoItem
+              key={index}
+              id={index}
+              text={item.text}
+              isDone={item.isDone}
+              onClicked={deleteItem}
+            />
+          ))}
         </ul>
       </div>
     </div>

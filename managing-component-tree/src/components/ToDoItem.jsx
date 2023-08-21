@@ -1,26 +1,15 @@
-import React, {useState} from 'react';
+import React from "react";
 
-
-
-function ToDoItem(todoItem) {
-
-    const [isDone, setIsDone] = useState("false");
-    
-    var styling = "text-decoration:"
-    function handleClick() {
-        console.log("Changed");
-        setIsDone(prevValue=> {
-            return !prevValue
-        });
-    } 
-    
-    return (
-
-        <div onClick={handleClick}>
-            <li style={{ textDecoration: isDone? "line-through" : "none"}}>{todoItem} </li>
-        </div>
-    )
-
+function ToDoItem(props) {
+  const { id, text, isDone, onClicked } = props;
+  
+  return (
+    <div onClick={() => {onClicked(id);}}>
+      <li style={{ textDecoration: isDone ? "line-through" : "none" }}>
+        {text}{" "}
+      </li>
+    </div>
+  );
 }
 
 export default ToDoItem;
